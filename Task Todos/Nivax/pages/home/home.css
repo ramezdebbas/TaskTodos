@@ -1,0 +1,119 @@
+﻿.homepage section[role=main] {
+    margin-left: 120px;
+    height: 100%;
+}
+
+    .homepage section[role=main] .content {
+        height: 100%;
+    }
+
+    .homepage section[role=main] #_notes_list {
+        height: 100%;
+        margin-left: -120px;
+    }
+
+        .homepage section[role=main] #_notes_list .win-container {
+            background-color: rgba(255, 255, 255, 0);
+            margin-left: 40px;
+            margin-top: 15px;
+        }
+
+            .homepage section[role=main] #_notes_list .win-container:hover {
+                outline: none;
+            }
+
+        .homepage section[role=main] #_notes_list .win-selectionbackground {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .homepage section[role=main] #_notes_list .win-selected .win-selectioncheckmark {
+            transform: scale(4) !important;
+            color: green;
+        }
+
+        .homepage section[role=main] #_notes_list .dataBinder {
+            width: 300px;
+            height: 150px;
+            padding-right: 50px;
+        }
+
+            .homepage section[role=main] #_notes_list .dataBinder li {
+                text-overflow: ellipsis;
+                -ms-text-overflow: ellipsis;
+                padding-right: 50px;
+            }
+
+            .homepage section[role=main] #_notes_list .dataBinder .item-header {
+                padding: 10px;
+                font-size: x-large;
+                font-variant: small-caps;
+                font-weight: 500;
+            }
+
+            .homepage section[role=main] #_notes_list .dataBinder .item-content ul {
+                list-style: none;
+            }
+
+        .homepage section[role=main] #_notes_list .win-surface {
+            margin-left: 120px;
+            margin-right: 240px;
+            margin-bottom: 120px;
+        }
+
+@media screen and (-ms-view-state: fullscreen-landscape) {
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .homepage section[role=main] {
+        margin-left: 20px;
+        height: 100%;
+    }
+
+        .homepage section[role=main] #_notes_list {
+            height: 100%;
+            overflow-y: scroll;
+            padding-right: 20px;
+        }
+
+            .homepage section[role=main] #_notes_list .win-container {
+                background: none;
+                width: 250px !important;
+                position: absolute;
+                left: 0px;
+                margin-left: 0px;
+            }
+
+                .homepage section[role=main] #_notes_list .win-container .win-item {
+                    width: 250px;
+                }
+
+            .homepage section[role=main] #_notes_list .dataBinder {
+                width: 250px;
+                height: 40px;
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0px;
+            }
+
+            .homepage section[role=main] #_notes_list .win-selected .win-selectioncheckmark {
+                transform: scale(3) !important;
+                color: green;
+            }
+
+            .homepage section[role=main] #_notes_list .dataBinder .item-content {
+                visibility: hidden;
+                display: none;
+            }
+
+            .homepage section[role=main] #_notes_list .win-surface {
+                height: 100%;
+                overflow: visible;
+                /*transform: scale(0.5)*/
+            }
+}
+
+@media screen and (-ms-view-state: portrait) {
+    .homepage section[role=main] {
+        margin-left: 100px;
+    }
+}

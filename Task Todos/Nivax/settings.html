@@ -1,0 +1,159 @@
+﻿<link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+<script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+<script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+
+<script type="text/javascript">
+
+    var themes = [
+                    {
+                        background: 'orange', titleColor: 'indigo', image: '', listBack: 'indigo', listColor: 'orange',
+                        name: '0', inside: "<div style = 'border: 2px solid indigo; background-color: orange; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'gold', titleColor: 'red', image: '', listBack: 'black', listColor: 'white',
+                        name: '1', inside: "<div style = 'border: 2px solid red; background-color: gold; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'green', titleColor: 'gold', image: '', listBack: 'royalblue', listColor: 'black',
+                        name: '2', inside: "<div style = 'border: 2px solid gold; background-color: green; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'red', titleColor: 'gold', image: '', listBack: 'blue', listColor: 'black',
+                        name: '3', inside: "<div style = 'border: 2px solid gold; background-color: red; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'royalblue', titleColor: 'white', image: '', listBack: 'royalblue', listColor: 'white',
+                        name: '4', inside: "<div style = 'border: 2px solid white; background-color: royalblue; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'black', titleColor: 'white', image: '', listBack: 'gold', listColor: 'black',
+                        name: '5', inside: "<div style = 'border: 2px solid white; background-color: black; width: 40px; height: 40px;'></div>"
+                    },
+                    {
+                        background: 'black', titleColor: 'white', image: "url('/images/background-texture.jpg');", listBack: 'orange', listColor: 'black',
+                        name: '6', inside: "<div style = 'border: 2px solid white; background: gold; width: 40px; height: 40px;'><img src='/images/background-texture.jpg' width='40px' height='40px' /></div>"
+                    },
+                    {
+                        background: 'white', titleColor: 'black', image: "url('/images/background-water.jpg');", listBack: 'brown', listColor: 'white',
+                        name: '7', inside: "<div style = 'border: 2px solid black; background: blue; width: 40px; height: 40px;'><img src='/images/background-water.jpg' width='40px' height='40px' /></div>"
+                    },
+                    {
+                        background: 'white', titleColor: 'darkred', image: "url('/images/background-flower.jpg');", listBack: 'royalblue', listColor: 'white',
+                        name: '8', inside: "<div style = 'border: 2px solid darkred; background: white; width: 40px; height: 40px;'><img src='/images/background-flower.jpg' width='40px' height='40px' /></div>"
+                    },
+                    {
+                        background: 'white', titleColor: 'purple', image: "url('/images/background-books.jpg');", listBack: 'purple', listColor: 'white',
+                        name: '9', inside: "<div style = 'border: 2px solid purple; background: purple; width: 40px; height: 40px;'><img src='/images/background-books.jpg' width='40px' height='40px' /></div>"
+                    },
+                    {
+                        background: 'white', titleColor: 'darkred', image: "url('/images/background-default.jpg');", listBack: 'royalblue', listColor: 'white',
+                        name: '10', inside: "<div style = 'border: 2px solid darkred; background: royalblue; width: 40px; height: 40px;'><img src='/images/background-default.jpg' width='40px' height='40px' /></div>"
+                    }
+    ];
+
+    (function () {
+
+        WinJS.UI.Pages.define("/settings.html", {
+            ready: function (element, options) {
+
+                var themeLV;
+                var themeList = new WinJS.Binding.List(themes);
+                themeLV = document.getElementById("themeSetting_listview").winControl;
+                themeLV.itemDataSource = themeList.dataSource;
+                themeLV.itemTemplate = document.getElementById("themeSetting_template");
+            }
+        });
+    }());
+
+    function changeTheme(args) {
+        var appTheme = App.UI.theme;
+        appTheme.background = themes[args.name].background;
+        appTheme.backimage = themes[args.name].image;
+        appTheme.titleColor = themes[args.name].titleColor;
+        appTheme.listColor = themes[args.name].listColor;
+        appTheme.listBack = themes[args.name].listBack;
+        appTheme.change++;
+        App.Nav.reload();
+    }
+
+</script>
+
+<style type="text/css">
+    .settingsFlyout .win-header {
+        background-color: white;
+        color: black;
+    }
+
+        .settingsFlyout .win-header .win-backbutton {
+            border-color: black;
+            color: black;
+        }
+</style>
+
+
+<!--SETTINGS CHARM-->
+<div class="settingsFlyout" id="settingsFlyout_About" data-win-control="WinJS.UI.SettingsFlyout" data-win-options="{width: 'wide'}">
+    <div class="win-header">
+        <button class="win-backbutton" onclick="showAppSettings()"></button>
+        <div style="position: relative; left: 40px;">
+            <h2>About</h2>
+        </div>
+
+    </div>
+    <div style="padding: 20px; color: black;">
+        <h2>Task Todos</h2>
+        <br /><h3>By Zoomerz</h3>
+        
+			
+    </div>
+
+</div>
+
+<div class="settingsFlyout" id="settingsFlyout_Options" data-win-control="WinJS.UI.SettingsFlyout">
+    <div class="win-header">
+        <button class="win-backbutton" onclick="showAppSettings()"></button>
+        <div style="position: relative; left: 40px;">
+            <h2>Options</h2>
+        </div>
+
+    </div>
+    <div style="padding: 20px; color: black;">
+        <div>
+            <h2>reset the app</h2>
+            <p>By doing this, you will erase all your app data.</p>
+            <div style="text-align: right">
+                <button onclick="resetApp()" style="color: red; border-color: red;">Reset</button>
+            </div>
+        </div>
+        <br />
+        <h2>themes</h2>
+        <div>
+            <div id="themeSetting_listview" style="height: 100px;" data-win-control="WinJS.UI.ListView" data-win-options="{selectionMode:'none'}"></div>
+            <div id="themeSetting_template" data-win-control="WinJS.Binding.Template">
+                <div>
+                    <div class="themeDIVs" style="width: 40px; height: 40px;" data-win-bind="name:name;innerHTML:inside" onclick="changeTheme(this)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="settingsFlyout" id="settingsFlyout_Feedback" data-win-control="WinJS.UI.SettingsFlyout">
+    <div class="win-header">
+        <button class="win-backbutton" onclick="showAppSettings()"></button>
+        <div style="position: relative; left: 40px;">
+            <h2>Feedback</h2>
+        </div>
+    </div>
+
+    <div style="padding: 20px; color: black;">
+        <h2>contribute</h2>
+        <p>
+            Your feedback is highly valuable to keep this app going better.<br />
+            If you feel any type of error in the app, please do notify the author about this.<br />
+        </p>
+        
+    </div>
+</div>

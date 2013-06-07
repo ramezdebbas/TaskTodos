@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>todo_editor</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="todo_editor.css" rel="stylesheet" />
+    <script src="todo_editor.js"></script>
+</head>
+<body>
+    <div class="todo_editor fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton dynamicColorButton" id="backAndSaveBut" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle dynamicTextColor">Task Todos!!</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <div id="editor">
+                <div id="TitleContainer">
+                    <input class="dynamicColorTextBox" type="text" id="listTitle" value="" />
+                    <span id="progress-bar"></span>
+                </div>
+
+                <div id="editor_listview" data-win-control="WinJS.UI.ListView" class="win-selectionstylefilled"
+                    data-win-options="{
+                    selectionMode: 'multi'
+                    }">
+                </div>
+                <div class="editor_template" id="editor_template" data-win-control="WinJS.Binding.Template">
+
+                    <div>
+                        <div class="dynamicColorListBox" data-win-bind="name:taskName">
+
+                            <div data-win-bind="className:ifDone;textContent:text;tooltip:alt" onclick="taskClicked(this)"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="listProgressContainer">
+                    <div id="listProgress"><progress class="dynamicColorProgressBar" id="listProgressBar" max="100" value="0"></progress></div>
+                    <div id="listProgressStatus"></div>
+                </div>
+
+
+                <!--APP BAR-->
+                <div id="editor_AppBar" data-win-control="WinJS.UI.AppBar">
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'AddCommand', icon:'add', label:'Add', section:'global', tooltip:'Add Task'}">
+                    </button>
+
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'PinCommand', icon:'pin', label: 'Pin to Start', section:'global'}">
+                    </button>
+
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'DelCommand', icon:'delete', label:'Delete', section:'global', tooltip:'Delete List'}">
+                    </button>
+
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'RemCommand', icon:'remove', label: 'Remove', tooltip: 'Remove Item', section:'selection'}">
+                    </button>
+
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'CopyCommand', icon:'copy', label: 'Copy Text', tooltip: 'Copy text from selection', section: 'selection'}">
+                    </button>
+
+                    <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'RemindCommand', icon:'clock', label: 'Set Reminder', tooltip: 'Manage Reminder for Task', section: 'selection'}">
+                    </button>
+                </div>
+
+                <!--ADD FLYOUT-->
+                <div id="Add_Flyout" data-win-control="WinJS.UI.Flyout" data-win-options="{placement:'top'}">
+                    <input id="addTaskInput" type="text" placeholder="New Task" value="" />
+                    <button class="defaultButton" id="addTaskButton">Add</button>
+                </div>
+
+                <!--CONFIRM DELETE FLYOUT-->
+                <div id="Del_Flyout"
+                    data-win-control="WinJS.UI.Flyout" data-win-options="{placement:'top'}">
+
+                    <span>This will delete the whole list.</span>
+                    <div style="text-align: right">
+                        <button class="defaultButton" id="delListButton">Delete</button>
+                    </div>
+                </div>
+
+                <!--COPY FLYOUT-->
+                <div id="Copy_Flyout"
+                    data-win-control="WinJS.UI.Flyout" data-win-options="{placement:'top'}">
+
+                    <span id="completeSelection"></span>
+                    <div style="text-align: right">
+                        <button class="defaultButton" id="copyTaskButton">Copy</button>
+                    </div>
+                </div>
+
+                <!--SCHEDULE FLYOUT-->
+                <div id="Schedule_Flyout"
+                    data-win-control="WinJS.UI.Flyout" data-win-options="{placement:'top'}">
+                    <div>
+                        <div>
+                            Date:
+                            <select id="Schedule_YY" data-win-control="App.Controls.DatePicker"
+                                data-win-options="{type:'year'}"
+                                onchange="reloadDay()">
+                            </select>
+                            <select id="Schedule_MO" data-win-control="App.Controls.DatePicker"
+                                data-win-options="{type:'month'}"
+                                onchange="reloadDay()">
+                            </select>
+                            <select id="Schedule_DD" data-win-control="App.Controls.DatePicker"
+                                data-win-options="{type:'day', yearid:'Schedule_YY', monthid:'Schedule_MO'}">
+                            </select>
+                        </div>
+                        <div>
+                            Time: 
+                            <select id="Schedule_HH" data-win-control="App.Controls.TimePicker"
+                                data-win-options="{type:'hour'}">
+                            </select>
+                            <select id="Schedule_MM" data-win-control="App.Controls.TimePicker"
+                                data-win-options="{type:'min'}">
+                            </select>
+                            <select id="Schedule_TT">
+                                <option value="PM">PM</option>
+                                <option value="AM">AM</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="defaultButton" id="setReminderBut">Set</button>
+                            <button class="sideButton" id="removeReminderBut">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

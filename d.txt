@@ -1,0 +1,13 @@
+Task Todos:
+Description:
+Having lot of things to do?? But not organized plans?? Now you can organize & categorize your to-do list with the help of this application.  
+	
+Features:
+•	Plan your tasks & todos to achieve what you want to do.
+•	You can have the tracking the achievement of tasks.
+•	Add todos through the app bar.
+•	Add Tasks through the app bar.
+•	Fully Different User Interface Designed keeping in focus point of view of Niche (Target) Market.
+•	Fully Unique Branding (Unique Logo Designing & Graphics Designing)
+
+
